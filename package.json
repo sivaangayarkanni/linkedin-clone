@@ -1,0 +1,16 @@
+{
+  "name": "linkedin-clone",
+  "version": "1.0.0",
+  "description": "A full-stack LinkedIn clone built with MERN stack",
+  "scripts": {
+    "install-all": "cd backend && npm install && cd ../frontend && npm install",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\"",
+    "start": "cd backend && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "keywords": ["linkedin", "clone", "social-media", "mern", "react", "nodejs"],
+  "author": "Your Name",
+  "license": "MIT"
+}
