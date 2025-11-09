@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { usersAPI } from '../utils/api';
 import { getUser } from '../utils/auth';
 
@@ -15,11 +15,7 @@ const UserProfile = ({ userId, onClose }) => {
   const currentUser = getUser();
   const isOwnProfile = userId === currentUser?.id;
 
-  useEffect(() => {
-    fetchProfile();
-  }, [userId]);
-
-  const fetchProfile = async () => {
+  const fetchProfile = useCallback(async () => {
     try {
       const response = await usersAPI.getProfile(userId);
       setProfile(response.data);
@@ -33,7 +29,11 @@ const UserProfile = ({ userId, onClose }) => {
       console.error('Error fetching profile:', error);
     }
     setLoading(false);
-  };
+  }, [userId]);
+
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
